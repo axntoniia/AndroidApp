@@ -1,3 +1,26 @@
 <resources>
-    <string name="app_name">AndroidApp</string>
+
+    <string name="app_name">LoginTest</string>
+
+    //Strings for Login
+    <string name="login_description">LOGIN</string>
+    <string name="login_description2">to the Quizapp</string>
+    <string name="hint_username">Benutzername</string>
+    <string name="hint_password">Passwort</string>
+
+    //Strings for LoginButtons
+    <string name="button_login">Anmelden</string>
+    <string name="button_registry">Noch keinen Account? Hier registrieren!</string>
+    
+    //Strings for Registry
+    <string name="registry_description">REGISTRY</string>
+    <string name="registry_description2">to the Quizapp</string>
+    <string name="hint_email">E-Mail Adresse</string>
+    <string name="hint_confirm_password">Passwort wiederholen</string>
+
+    //Strings for RegistryButtons
+    <string name="button_registration">Registrieren</string>
+    <string name="button_backtologin">Hier gehts zum Login</string>
+
+
 </resources>
