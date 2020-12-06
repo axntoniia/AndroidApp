@@ -80,7 +80,7 @@
             android:inputType="textPassword" />
 
         <EditText
-            android:id="@+id/et_confimpassword"
+            android:id="@+id/et_confirmpassword"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
