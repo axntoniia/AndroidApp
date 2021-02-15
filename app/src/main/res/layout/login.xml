@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".Registration">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -88,7 +88,7 @@
             android:textColor="#FFFFFF" />
 
         <Button
-            android:id="@+id/btn_registry"
+            android:id="@+id/btnToRegistration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

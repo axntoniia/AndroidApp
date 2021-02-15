@@ -11,7 +11,7 @@
     //Strings for LoginButtons
     <string name="button_login">Anmelden</string>
     <string name="button_registry">Noch keinen Account? Hier registrieren!</string>
-    
+
     //Strings for Registry
     <string name="registry_description">REGISTRY</string>
     <string name="registry_description2">to the Quizapp</string>
@@ -22,5 +22,6 @@
     <string name="button_registration">Registrieren</string>
     <string name="button_backtologin">Hier gehts zum Login</string>
 
-
+    //Strings for Evaluation
+    <string name="button_newGame">Neues Spiel</string>
 </resources>
