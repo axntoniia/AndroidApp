@@ -20,7 +20,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     private Button btn_registration;
     private Button btnToLogin;
     private EditText et_username, et_password, et_confirmpassword, et_email;
-    private int u_id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,11 +55,9 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             this.finish();
         }else {
             try {
-                Toast.makeText(getApplicationContext(), "Testklick", Toast.LENGTH_SHORT).show();
                 String password = et_password.getText().toString();
                 if (password.equals(et_confirmpassword.getText().toString()) && !password.isEmpty()) {
-                    int insert = db.insert(u_id, et_username.getText().toString(), password, et_email.getText().toString());
-                    u_id++;
+                    int insert = db.insertUser(et_username.getText().toString(), password, et_email.getText().toString());
                     Toast.makeText(getApplicationContext(), "Sollte passen", Toast.LENGTH_SHORT).show();
                     Intent intent1 = new Intent(this, Evaluation.class);
                     startActivity(intent1);

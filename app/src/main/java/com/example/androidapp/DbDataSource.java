@@ -18,7 +18,6 @@ public class DbDataSource {
         Log.d(LOG_TAG, "DataSource erzeugt DbHelper");
         dbHelper = new DbHelper(context);
         database = dbHelper.getWritableDatabase();
-        dbHelper.test(database);
         Log.d(LOG_TAG, "Insert Adminuser");
     }
 
