@@ -14,12 +14,11 @@ import android.widget.Toast;
 public class Registration extends AppCompatActivity implements View.OnClickListener {
 
     private static final String LOG_TAG = Registration.class.getSimpleName();
-
-    private DbDataSource dataSource;
-    private DbHelper db;
     private Button btn_registration;
     private Button btnToLogin;
     private EditText et_username, et_password, et_confirmpassword, et_email;
+    private DbDataSource dataSource;
+    private DbHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,21 +26,14 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
 
-        DbDataSet dataSet = new DbDataSet( 0, "admin", "User1234", "remm.stefan@outlook.de");
-        Log.d(LOG_TAG, "DataSet erzeugen");
-        DbDataSource dataSource = new DbDataSource(this);
-        db = new DbHelper(this);
-
         btnToLogin = (Button) findViewById(R.id.btnToLogin);
-        btn_registration = (Button) findViewById(R.id.btn_registration);
+        btn_registration = (Button) findViewById(R.id.btn_login);
         et_username = (EditText) findViewById(R.id.et_username);
         et_password = (EditText) findViewById(R.id.et_password);
         et_confirmpassword = (EditText) findViewById(R.id.et_confirmpassword);
         et_email = (EditText) findViewById(R.id.et_email);
         btn_registration.setOnClickListener(this);
         btn_registration.setVisibility(View.VISIBLE);
-
-
     }
 
     @Override
@@ -57,7 +49,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             try {
                 String password = et_password.getText().toString();
                 if (password.equals(et_confirmpassword.getText().toString()) && !password.isEmpty()) {
-                    int insert = db.insertUser(et_username.getText().toString(), password, et_email.getText().toString());
                     Toast.makeText(getApplicationContext(), "Sollte passen", Toast.LENGTH_SHORT).show();
                     Intent intent1 = new Intent(this, Evaluation.class);
                     startActivity(intent1);
