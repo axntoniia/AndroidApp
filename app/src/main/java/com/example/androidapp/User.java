@@ -6,17 +6,17 @@ public class User {
     private String passwd;
     private String email;
     private int score;
-    private int score_percent;
+    private int score_total;
 
     public User() {
     }
 
-    public User(String user, String passwd, String email, int score, int score_percent) {
+    public User(String user, String passwd, String email, int score, int score_total) {
         this.user = user;
         this.passwd = passwd;
         this.email = email;
         this.score = score;
-        this.score_percent = score_percent;
+        this.score_total = score_total;
     }
 
     public String getUser() {
@@ -51,11 +51,11 @@ public class User {
         this.score = score;
     }
 
-    public int getScore_percent() {
-        return score_percent;
+    public int getScore_total() {
+        return score_total;
     }
 
-    public void setScore_percent(int score_percent) {
-        this.score_percent = score_percent;
+    public void setScore_total(int score_total) {
+        this.score_total = score_total;
     }
 }

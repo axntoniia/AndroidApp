@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Evaluation extends Activity implements View.OnClickListener
 {
@@ -22,8 +23,14 @@ public class Evaluation extends Activity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        Intent intent =new Intent(this, Questions.class);
-        startActivity(intent);
-        this.finish();
+        try {
+            Intent intent = new Intent(this, Questions.class);
+            startActivity(intent);
+            this.finish();
+        }
+        catch(Exception e)
+        {
+            Toast.makeText(getApplicationContext(), "Fehler " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

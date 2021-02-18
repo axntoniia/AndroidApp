@@ -100,7 +100,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_confirm"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:background="@drawable/layout_button"

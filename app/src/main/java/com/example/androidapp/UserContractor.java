@@ -12,7 +12,7 @@ public final class UserContractor {
             public static final String COLUMN_PASSWD = "passwd";
             public static final String COLUMN_EMAIL = "email";
             public static final String COLUMN_SCORE = "score";
-            public static final String COLUMN_SCOREPERCENT = "scorepercent";
+            public static final String COLUMN_SCORETOTAL = "scorepercent";
         }
 
 }

@@ -10,18 +10,63 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Angemeldet als: X"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:id="@+id/tv_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Frage: 0"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score: 0"
+            android:layout_marginLeft="20dp" />
+
+        <TextView
+            android:id="@+id/tv_scoreTotalRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insgesamt richtig beantwortet: 0"
+            android:layout_marginLeft="20dp" />
+
+        <TextView
+            android:id="@+id/tv_scoreTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insgesamt beantwortet: 0 "
+            android:layout_marginLeft="20dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1.5"
-        android:gravity="center"
+        android:gravity="center_vertical|right"
+        android:layout_gravity="center|right"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_question"
-            android:layout_width="371dp"
-            android:layout_height="236dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/layout_textview_questions"
-            android:textAlignment="center"
-            android:textColor="@color/design_default_color_on_secondary" />
+            android:gravity="center"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="24sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -39,7 +84,8 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@drawable/layout_button_questions"
-            android:textColor="@color/design_default_color_on_primary" />
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/btn_a2"
@@ -49,7 +95,8 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/layout_button_questions"
-            android:textColor="@color/design_default_color_on_primary" />
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -67,7 +114,8 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@drawable/layout_button_questions"
-            android:textColor="@color/design_default_color_on_primary" />
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/btn_a4"
@@ -77,6 +125,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/layout_button_questions"
-            android:textColor="@color/design_default_color_on_primary" />
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>

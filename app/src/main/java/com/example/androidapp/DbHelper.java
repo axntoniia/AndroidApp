@@ -15,10 +15,9 @@ import java.util.List;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    public static final String DB_NAME = "db_quiz";
+    public static final String DB_NAME = "quiz_database";
     public static final int DATABASE_VERSION = 1;
     private static final String LOG_TAG = DbHelper.class.getSimpleName();
-    ;
 
     private SQLiteDatabase db;
 
@@ -39,7 +38,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION4 + " TEXT, " +
                 QuestionsTable.COLUMN_ANSWER_NR + " INTEGER" + ")";
-
         db.execSQL(QUESTIONS_CREATE);
         insertQuestion();
 
@@ -50,10 +48,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 UserTable.COLUMN_PASSWD + " TEXT, " +
                 UserTable.COLUMN_EMAIL + " TEXT, " +
                 UserTable.COLUMN_SCORE + " INTEGER, " +
-                UserTable.COLUMN_SCOREPERCENT +  " INTEGER" + ")";
-
+                UserTable.COLUMN_SCORETOTAL +  " INTEGER" + ")";
+        Log.d(LOG_TAG, "DbHelper hat die Datenbank: "+ getDatabaseName() +" erzeugt.");
         db.execSQL(USER_CREATE);
-        insertUser();
+        insertUser("admin", "admin", "admin@test.de");
     }
 
     @Override
@@ -66,7 +64,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private void insertQuestion() {
         Question q1 = new Question("Was ist Java?", "Programmiersprache", "Speichereinheit", "Gericht", "Kontinent", 1);
         addQuestion(q1);
- /*       Question q2 = new Question("Was ist ein Byte?","Maßeinheit für Datenmengen","Programmiersprache","Bildbearbeitungsprogramm","Hardwareteil", 1);
+        Question q2 = new Question("Was ist ein Byte?","Maßeinheit für Datenmengen","Programmiersprache","Bildbearbeitungsprogramm","Hardwareteil", 1);
         addQuestion(q2);
         Question q3 = new Question("Wie viele Bits sind ein Byte","8","16","2","1024", 1);
         addQuestion(q3);
@@ -78,7 +76,7 @@ public class DbHelper extends SQLiteOpenHelper {
         addQuestion(q6);
         Question q7 = new Question("Wie nennt man völlig kostenlose Programme für PCs?","Freeware","Shareware","Software","Hardware", 1);
         addQuestion(q7);
-        Question q8 = new Question("Was bedeutet Open-Source","Quellcode ist änderbar","überallverwendbar","gecrackte Version","alles gratis", 1);
+        Question q8 = new Question("Was bedeutet Open-Source","Quellcode ist änderbar","überall verwendbar","gecrackte Version","alles gratis", 1);
         addQuestion(q8);
         Question q9 = new Question("Welche 3 Grundfarben verwendet ein Monitor?","Rot, Grün, Blau","Rot, Gelb, Blau","Rot, Blau, Weiß","Schwarz, Weiß, Blau", 1);
         addQuestion(q9);
@@ -98,12 +96,12 @@ public class DbHelper extends SQLiteOpenHelper {
         addQuestion(q16);
         Question q17 = new Question("Einen tragbaren Computer nennt man?","Laptop","Desktop","Computer","Buggy", 1);
         addQuestion(q17);
- */
+
     }
 
-    private void insertUser(){
-        User u1 = new User("admin", "admin", "admin@test.de", 0, 0);
-        addUser(u1);
+    public void insertUser(String user, String passwd, String email){
+        User u = new User(user, passwd, email, 0, 0);
+        addUser(u);
     }
 
     private void addQuestion(Question question) {
@@ -123,13 +121,13 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(UserTable.COLUMN_PASSWD, user.getPasswd());
         cv.put(UserTable.COLUMN_EMAIL, user.getEmail());
         cv.put(UserTable.COLUMN_SCORE, user.getScore());
-        cv.put(UserTable.COLUMN_SCOREPERCENT, user.getScore_percent());
+        cv.put(UserTable.COLUMN_SCORETOTAL, user.getScore_total());
         db.insert(UserTable.TABLE_NAME, null, cv);
     }
 
     public List<Question> getAllQuestions() {
         List<Question> questionList = new ArrayList<>();
-        db = getReadableDatabase();
+        db = getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);
 
         if (c.moveToFirst()) {
@@ -141,6 +139,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
+                questionList.add(question);
 
             } while (c.moveToNext());
         }
@@ -149,4 +148,60 @@ public class DbHelper extends SQLiteOpenHelper {
         return questionList;
     }
 
+    public int getUserScore(String user){
+        db = getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT " + UserTable.COLUMN_SCORE + " FROM " + UserTable.TABLE_NAME + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
+        if(c.moveToFirst()) {
+            return c.getInt(c.getColumnIndex(UserTable.COLUMN_SCORE));
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public int getUserScoreTotal(String user){
+        db = getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT " + UserTable.COLUMN_SCORETOTAL + " FROM " + UserTable.TABLE_NAME + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
+        if(c.moveToFirst()) {
+            return c.getInt(c.getColumnIndex(UserTable.COLUMN_SCORETOTAL));
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public void setScore(String user, int score){
+        db = getWritableDatabase();
+        int scoreFinal = getUserScore(user) + score;
+        db.rawQuery("UPDATE " + UserTable.TABLE_NAME + " SET " + UserTable.COLUMN_SCORE + " = " + scoreFinal + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
+    }
+
+    public void setScoreTotal(String user, int totalScore){
+        db = getWritableDatabase();
+        int scoreTotalFinal = getUserScore(user) + totalScore;
+        db.rawQuery("UPDATE " + UserTable.TABLE_NAME + " SET " + UserTable.COLUMN_SCORETOTAL + " = " + scoreTotalFinal + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
+    }
+
+
+    public boolean checkUsername(String user){
+        db = getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + UserTable.TABLE_NAME + " WHERE " + UserTable.COLUMN_USER + " = ? ", new String[] {user});
+        if(c.moveToFirst()) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean validateUser(String user, String passwd){
+        db = getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + UserTable.TABLE_NAME + " WHERE " + UserTable.COLUMN_USER + " = ? and " + UserTable.COLUMN_PASSWD + " = ?", new String[] {user, passwd});
+        if(c.moveToFirst()) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

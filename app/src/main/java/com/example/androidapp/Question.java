@@ -57,7 +57,7 @@ public class Question {
     }
 
     public void setOption4(String option4) {
-        this.option3 = option4;
+        this.option4 = option4;
     }
 
     public int getAnswerNr() {
