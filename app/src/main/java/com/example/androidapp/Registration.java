@@ -72,7 +72,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         else {
             Toast.makeText(getApplicationContext(), "Die Passwörter stimmen nicht überein", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
