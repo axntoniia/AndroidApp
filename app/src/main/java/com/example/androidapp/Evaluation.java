@@ -75,14 +75,10 @@ public class Evaluation extends Activity implements View.OnClickListener
         tv_scorePercent3 = findViewById(R.id.tv_scorePercent3);
 
         userList = dbHelper.getTop3();
-       // Toast.makeText(getApplicationContext(), , Toast.LENGTH_SHORT).show();
         try {
             fillScoreboard();
         }
-        catch(Exception e)
-        {
-            Toast.makeText(getApplicationContext(), "Fehler: " + e, Toast.LENGTH_SHORT).show();
-        }
+        catch(Exception e){}
     }
 
     private void fillScoreboard(){
@@ -136,27 +132,18 @@ public class Evaluation extends Activity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        try {
-            Intent intent = new Intent(this, Questions.class);
-            startActivity(intent);
-            this.finish();
-        }
-        catch(Exception e)
-        {
-            Toast.makeText(getApplicationContext(), "Fehler " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        Intent intent;
+        switch(v.getId()){
+            case R.id.btnNewGame:
+                intent = new Intent(this, Questions.class);
+                startActivity(intent);
+                this.finish();
+                break;
+            default:
+                intent = new Intent(this, Login.class);
+                startActivity(intent);
+                this.finish();
+                break;
         }
     }
 }
-/*
-        if (questionCounter < questionsCounterTotal) {
-        currentQuestion = questionList.get(questionCounter);
-        tv_question.setText(currentQuestion.getQuestion());
-        double r = Math.random();
-        if(r<0.25) {
-        btn_a1.setText(currentQuestion.getOption1());
-        btn_a2.setText(currentQuestion.getOption2());
-        btn_a3.setText(currentQuestion.getOption3());
-        btn_a4.setText(currentQuestion.getOption4());
-        right = 1;
-        }
- */

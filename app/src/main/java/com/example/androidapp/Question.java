@@ -6,18 +6,16 @@ public class Question {
     private String option2;
     private String option3;
     private String option4;
-    private int answerNr;
 
     public Question() {
     }
 
-    public Question(String question, String option1, String option2, String option3, String option4, int answerNr) {
+    public Question(String question, String option1, String option2, String option3, String option4) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
         this.option4 = option4;
-        this.answerNr = answerNr;
     }
 
     public String getQuestion() {
@@ -58,13 +56,5 @@ public class Question {
 
     public void setOption4(String option4) {
         this.option4 = option4;
-    }
-
-    public int getAnswerNr() {
-        return answerNr;
-    }
-
-    public void setAnswerNr(int answerNr) {
-        this.answerNr = answerNr;
     }
 }

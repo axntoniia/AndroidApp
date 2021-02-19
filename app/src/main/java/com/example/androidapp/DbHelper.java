@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.androidapp.QuizContract.*;
-import com.example.androidapp.UserContractor.*;
+import com.example.androidapp.UserContract.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +36,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_OPTION1 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION2 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
-                QuestionsTable.COLUMN_OPTION4 + " TEXT, " +
-                QuestionsTable.COLUMN_ANSWER_NR + " INTEGER" + ")";
+                QuestionsTable.COLUMN_OPTION4 + " TEXT" + " ) ";
         db.execSQL(QUESTIONS_CREATE);
         insertQuestion();
 
@@ -64,39 +63,39 @@ public class DbHelper extends SQLiteOpenHelper {
     // Funktion erstellt Question Objekte und fügt diese der Tabelle hinzu
     // Return: null
     private void insertQuestion() {
-        Question q1 = new Question("Was ist Java?", "Programmiersprache", "Speichereinheit", "Gericht", "Kontinent", 1);
+        Question q1 = new Question("Was ist Java?", "Programmiersprache", "Speichereinheit", "Gericht", "Kontinent");
         addQuestion(q1);
-        Question q2 = new Question("Was ist ein Byte?","Maßeinheit für Datenmengen","Programmiersprache","Bildbearbeitungsprogramm","Hardwareteil", 1);
+        Question q2 = new Question("Was ist ein Byte?","Maßeinheit für Datenmengen","Programmiersprache","Bildbearbeitungsprogramm","Hardwareteil");
         addQuestion(q2);
-        Question q3 = new Question("Wie viele Bits sind ein Byte","8","16","2","1024", 1);
+        Question q3 = new Question("Wie viele Bits sind ein Byte","8","16","2","1024");
         addQuestion(q3);
-        Question q4 = new Question("Was bedeutet die Abkürzung ROM?","read only memory","read on mind","rest or move","rest on medium", 1);
+        Question q4 = new Question("Was bedeutet die Abkürzung ROM?","read only memory","read on mind","rest or move","rest on medium");
         addQuestion(q4);
-        Question q5 = new Question("Was bedeutet IT?","Informationstechnologie","Außerirdischer","Intelligenzquotient","Internettreffpunkt", 1);
+        Question q5 = new Question("Was bedeutet IT?","Informationstechnologie","Außerirdischer","Intelligenzquotient","Internettreffpunkt");
         addQuestion(q5);
-        Question q6 = new Question("Wofür steht die Abkürzung WWW","World Wide Web","wer weiß was","welt weites Warten","wieso weshalb warum", 1);
+        Question q6 = new Question("Wofür steht die Abkürzung WWW","World Wide Web","wer weiß was","welt weites Warten","wieso weshalb warum");
         addQuestion(q6);
-        Question q7 = new Question("Wie nennt man völlig kostenlose Programme für PCs?","Freeware","Shareware","Software","Hardware", 1);
+        Question q7 = new Question("Wie nennt man völlig kostenlose Programme für PCs?","Freeware","Shareware","Software","Hardware");
         addQuestion(q7);
-        Question q8 = new Question("Was bedeutet Open-Source","Quellcode ist änderbar","überall verwendbar","gecrackte Version","alles gratis", 1);
+        Question q8 = new Question("Was bedeutet Open-Source","Quellcode ist änderbar","überall verwendbar","gecrackte Version","alles gratis");
         addQuestion(q8);
-        Question q9 = new Question("Welche 3 Grundfarben verwendet ein Monitor?","Rot, Grün, Blau","Rot, Gelb, Blau","Rot, Blau, Weiß","Schwarz, Weiß, Blau", 1);
+        Question q9 = new Question("Welche 3 Grundfarben verwendet ein Monitor?","Rot, Grün, Blau","Rot, Gelb, Blau","Rot, Blau, Weiß","Schwarz, Weiß, Blau");
         addQuestion(q9);
-        Question q10 = new Question("Was ist kein Eingabegerät?","Monitor","Scanner","Tastatur","Maus", 1);
+        Question q10 = new Question("Was ist kein Eingabegerät?","Monitor","Scanner","Tastatur","Maus");
         addQuestion(q10);
-        Question q11 = new Question("Was ist das EVA-Prinzip","Eingabe, Verarbeitung, Ausgabe","Eingabe, Verarbeitung, Annahme","Eingabe, Verwechslung, Ausgabe","Eingabe, Verwechslung, Annahme", 1);
+        Question q11 = new Question("Was ist das EVA-Prinzip","Eingabe, Verarbeitung, Ausgabe","Eingabe, Verarbeitung, Annahme","Eingabe, Verwechslung, Ausgabe","Eingabe, Verwechslung, Annahme");
         addQuestion(q11);
-        Question q12 = new Question("In was wird die Bildschirmgröße angegeben?","Zoll","Zentimeter","Pixel ","Byte", 1);
+        Question q12 = new Question("In was wird die Bildschirmgröße angegeben?","Zoll","Zentimeter","Pixel ","Byte");
         addQuestion(q12);
-        Question q13 = new Question("Was ist die kleinste Einheit?","Bit","Kilobyte","Byte ","Megabyte", 1);
+        Question q13 = new Question("Was ist die kleinste Einheit?","Bit","Kilobyte","Byte ","Megabyte");
         addQuestion(q13);
-        Question q14 = new Question("Wie wird ein infizierter Programmcode noch bezeichnet?","Wurm","Zecke","Schlange","Blutsauger", 1);
+        Question q14 = new Question("Wie wird ein infizierter Programmcode noch bezeichnet?","Wurm","Zecke","Schlange","Blutsauger");
         addQuestion(q14);
-        Question q15 = new Question("Was bedeutet Malware?","Schadsoftware","Beratersoftware","interne Software","OpenSourceSoftware", 1);
+        Question q15 = new Question("Was bedeutet Malware?","Schadsoftware","Beratersoftware","interne Software","OpenSourceSoftware");
         addQuestion(q15);
-        Question q16 = new Question("Welcher Hersteller hat kein Android auf seinen Handys?","Apple","HTC","Samsung","LG", 1);
+        Question q16 = new Question("Welcher Hersteller hat kein Android auf seinen Handys?","Apple","HTC","Samsung","LG");
         addQuestion(q16);
-        Question q17 = new Question("Einen tragbaren Computer nennt man?","Laptop","Desktop","Computer","Buggy", 1);
+        Question q17 = new Question("Einen tragbaren Computer nennt man?","Laptop","Desktop","Computer","Buggy");
         addQuestion(q17);
 
     }
@@ -117,7 +116,6 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_OPTION2, question.getOption2());
         cv.put(QuestionsTable.COLUMN_OPTION3, question.getOption3());
         cv.put(QuestionsTable.COLUMN_OPTION4, question.getOption4());
-        cv.put(QuestionsTable.COLUMN_ANSWER_NR, question.getAnswerNr());
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
@@ -140,15 +138,13 @@ public class DbHelper extends SQLiteOpenHelper {
         db = getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + UserTable.TABLE_NAME + " ORDER BY " + UserTable.COLUMN_SCORE + " DESC", null );
         if(c.moveToFirst()) {
-            int i = 0;
             do{
                User user = new User();
                user.setUser(c.getString(c.getColumnIndex(UserTable.COLUMN_USER)));
                user.setScore(c.getInt(c.getColumnIndex(UserTable.COLUMN_SCORE)));
                user.setScore_total(c.getInt(c.getColumnIndex(UserTable.COLUMN_SCORETOTAL)));
                userList.add(user);
-               i ++;
-            } while (c.moveToNext() || i < 3);
+            } while (c.moveToNext());
         }
         c.close();
         return userList;
@@ -168,7 +164,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
-                question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
                 questionList.add(question);
 
             } while (c.moveToNext());

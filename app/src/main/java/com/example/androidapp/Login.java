@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
         userPref = getSharedPreferences("currentUser", MODE_PRIVATE);
         userPrefEdit = userPref.edit();
         userPrefEdit.putString("currentUser", null);
-        userPrefEdit.commit();
+        userPrefEdit.apply();
     }
 
     // Speichert den übergebenen Benutzer in den SharedPreferences

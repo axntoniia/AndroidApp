@@ -23,14 +23,16 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
 
-        btnToLogin = (Button) findViewById(R.id.btnToLogin);
-        btn_registration = (Button) findViewById(R.id.btn_confirm);
-        et_username = (EditText) findViewById(R.id.et_username);
-        et_password = (EditText) findViewById(R.id.et_password);
+        btnToLogin       = findViewById(R.id.btnToLogin);
+        btn_registration = findViewById(R.id.btn_confirm);
+        et_username      = findViewById(R.id.et_username);
+        et_password      = findViewById(R.id.et_password);
         et_confirmpassword = (EditText) findViewById(R.id.et_confirmpassword);
         et_email = (EditText) findViewById(R.id.et_email);
         btn_registration.setOnClickListener(this);
         btn_registration.setVisibility(View.VISIBLE);
+        btnToLogin.setOnClickListener(this);
+        btnToLogin.setVisibility(View.VISIBLE);
     }
 
     public void backToLogin(){
@@ -47,8 +49,14 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         if(user.isEmpty()){
             Toast.makeText(getApplicationContext(), "Benutzername darf nicht leer sein.", Toast.LENGTH_SHORT).show();
         }
+        else if(user.contains(" ") | user.contains("!") | user.contains("'") | user.contains("§") | user.contains("$") | user.contains("%") | user.contains("&") | user.contains("/")){
+            Toast.makeText(getApplicationContext(), "Der Benutzername darf keine Leerzeichen und Sonderzeichen beinhalten.", Toast.LENGTH_SHORT).show();
+        }
         else if(passwd.isEmpty()){
-            Toast.makeText(getApplicationContext(), "Passwort darf nicht leer sein.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Das Passwort darf nicht leer sein.", Toast.LENGTH_SHORT).show();
+        }
+        else if(passwd.contains(" ")){
+            Toast.makeText(getApplicationContext(), "Das Passwort darf keine Leerzeichen enthalten.", Toast.LENGTH_SHORT).show();
         }
         else if(passwd.equals(passwd_conf)){
             DbHelper dbHelper = new DbHelper(this);
@@ -71,12 +79,13 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v)
     {
         switch(v.getId()) {
-            case R.id.btnToLogin:
-                backToLogin();
-                break;
             case R.id.btn_confirm:
                 registrateUser();
                 break;
+            default:
+                backToLogin();
+                break;
+
         }
     }
 }

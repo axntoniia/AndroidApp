@@ -81,32 +81,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="40dp"
-                android:text="TextView" />
+                android:width="40dp" />
 
             <TextView
                 android:id="@+id/tv_score1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="40dp"
-                android:text="TextView" />
+                android:width="40dp" />
 
             <TextView
                 android:id="@+id/tv_scoreTotal1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="20dp"
-                android:text="TextView" />
+                android:width="20dp" />
 
             <TextView
                 android:id="@+id/tv_scorePercent1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="20dp"
-                android:text="TextView" />
+                android:width="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -122,32 +118,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="40dp"
-                android:text="TextView" />
+                android:width="40dp" />
 
             <TextView
                 android:id="@+id/tv_score2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="40dp"
-                android:text="TextView" />
+                android:width="40dp" />
 
             <TextView
                 android:id="@+id/tv_scoreTotal2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="20dp"
-                android:text="TextView" />
+                android:width="20dp" />
 
             <TextView
                 android:id="@+id/tv_scorePercent2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="20dp"
-                android:text="TextView" />
+                android:width="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -163,32 +155,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="40dp"
-                android:text="TextView" />
+                android:width="40dp" />
 
             <TextView
                 android:id="@+id/tv_score3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="40dp"
-                android:text="TextView" />
+                android:width="40dp" />
 
             <TextView
                 android:id="@+id/tv_scoreTotal3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="20dp"
-                android:text="TextView" />
+                android:width="20dp" />
 
             <TextView
                 android:id="@+id/tv_scorePercent3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:width="20dp"
-                android:text="TextView" />
+                android:width="20dp" />
 
         </LinearLayout>
 

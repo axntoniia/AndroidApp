@@ -4,10 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
+import com.example.androidapp.Utils.*;
 import java.util.logging.Handler;
 
 
@@ -26,12 +25,12 @@ public class Questions extends Activity implements View.OnClickListener
     private TextView tv_counter;
     private TextView tv_scoreTotalRight;
     private TextView tv_scoreTotal;
+    private TextView tv_answer;
+
     private Button btn_a1;
     private Button btn_a2;
     private Button btn_a3;
     private Button btn_a4;
-
-    private Color buttonDefault;
 
     private List<Question> questionList;
     private int questionCounter;
@@ -56,6 +55,7 @@ public class Questions extends Activity implements View.OnClickListener
         tv_counter         = findViewById(R.id.tv_counter);
         tv_scoreTotalRight = findViewById(R.id.tv_scoreTotalRight);
         tv_scoreTotal      = findViewById(R.id.tv_scoreTotal);
+        tv_answer          = findViewById(R.id.tv_answer);
 
         btn_a1 = findViewById(R.id.btn_a1);
         btn_a2 = findViewById(R.id.btn_a2);
@@ -118,6 +118,7 @@ public class Questions extends Activity implements View.OnClickListener
            questionCounter++;
            tv_counter.setText("Frage: " + questionCounter + "/" + questionsCounterTotal);
            tv_score.setText("Score: " + score);
+           tv_answer.setText("");
 
         }
         else {
@@ -139,13 +140,26 @@ public class Questions extends Activity implements View.OnClickListener
         this.finish();
     }
 
+    private void nextQuestion(){
+        Utils.delay(3, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                // Do something after delay
+                showNextQuestion();
+            }
+        });
+
+    }
+
     private void answerR(){
         score++;
-        showNextQuestion();
+        tv_answer.setText("Richtig!");
+        nextQuestion();
     }
 
     private void answerW(){
-        showNextQuestion();
+        tv_answer.setText("Falsch!\n'" + currentQuestion.getOption1() + "'\nist richtig");
+        nextQuestion();
     }
 
     @Override
@@ -164,18 +178,7 @@ public class Questions extends Activity implements View.OnClickListener
             answerR();
         }
         else {
-           if(R.id.btn_a1 == id){
-               answerW();
-           }
-           else if(R.id.btn_a2 == id){
-               answerW();
-           }
-           else if(R.id.btn_a3 == id){
-               answerW();
-           }
-           else {
-               answerW();
-           }
+            answerW();
         }
     }
 }
