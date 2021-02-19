@@ -25,4 +25,8 @@
     //Strings for Evaluation
     <string name="button_newGame">Neues Spiel</string>
     <string name="button_logout">Abmelden</string>
+    <string name="header_user">Benutzer</string>
+    <string name="header_score">Richtige</string>
+    <string name="header_total">Fragen</string>
+    <string name="header_percent">Quote</string>
 </resources>

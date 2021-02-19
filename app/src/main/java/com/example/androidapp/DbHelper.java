@@ -61,6 +61,8 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Funktion erstellt Question Objekte und fügt diese der Tabelle hinzu
+    // Return: null
     private void insertQuestion() {
         Question q1 = new Question("Was ist Java?", "Programmiersprache", "Speichereinheit", "Gericht", "Kontinent", 1);
         addQuestion(q1);
@@ -99,11 +101,15 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
+    // Die Funktion erstellt ein neues UserObjekt und fügt es der Tabelle hinzu
+    // Return: null
     public void insertUser(String user, String passwd, String email){
-        User u = new User(user, passwd, email, 3, 10);
+        User u = new User(user, passwd, email, 0, 0);
         addUser(u);
     }
 
+    // Funktion fügt die übergebene Frage in die Tabelle der Fragen ein
+    // Return: null
     private void addQuestion(Question question) {
         ContentValues cv = new ContentValues();
         cv.put(QuestionsTable.COLUMN_QUESTION, question.getQuestion());
@@ -115,6 +121,8 @@ public class DbHelper extends SQLiteOpenHelper {
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
+    // Funktion fügt den übergebenen User in die Tabelle der User ein
+    // Return: null
     private void addUser(User user) {
         ContentValues cv = new ContentValues();
         cv.put(UserTable.COLUMN_USER, user.getUser());
@@ -125,11 +133,33 @@ public class DbHelper extends SQLiteOpenHelper {
         db.insert(UserTable.TABLE_NAME, null, cv);
     }
 
+    // Funktion erstellt eine ArrayList mit den Top 3 Usern
+    // Return: ArrayList List<User>
+    public List<User> getTop3(){
+        List<User> userList = new ArrayList<>();
+        db = getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + UserTable.TABLE_NAME + " ORDER BY " + UserTable.COLUMN_SCORE + " DESC", null );
+        if(c.moveToFirst()) {
+            int i = 0;
+            do{
+               User user = new User();
+               user.setUser(c.getString(c.getColumnIndex(UserTable.COLUMN_USER)));
+               user.setScore(c.getInt(c.getColumnIndex(UserTable.COLUMN_SCORE)));
+               user.setScore_total(c.getInt(c.getColumnIndex(UserTable.COLUMN_SCORETOTAL)));
+               userList.add(user);
+               i ++;
+            } while (c.moveToNext() || i < 3);
+        }
+        c.close();
+        return userList;
+    }
+
+    // Funktion erstellt eine ArrayList mit allen Fragen und Antworten und gibt diese zurück
+    // Return: ArryList List<Question>
     public List<Question> getAllQuestions() {
         List<Question> questionList = new ArrayList<>();
         db = getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);
-
         if (c.moveToFirst()) {
             do {
                 Question question = new Question();
@@ -143,11 +173,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
             } while (c.moveToNext());
         }
-
         c.close();
         return questionList;
     }
 
+    // Funktion ermittelt den Score eines Users
+    // Return: int Score
     public int getUserScore(String user){
         db = getWritableDatabase();
         Cursor c = db.rawQuery("SELECT " + UserTable.COLUMN_SCORE + " FROM " + UserTable.TABLE_NAME + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
@@ -159,6 +190,8 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
+    // Funktion ermittelt den TotalScore eines Users
+    // Return: int TotalScore
     public int getUserScoreTotal(String user){
         db = getWritableDatabase();
         Cursor c = db.rawQuery("SELECT " + UserTable.COLUMN_SCORETOTAL + " FROM " + UserTable.TABLE_NAME + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
@@ -170,19 +203,24 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
+    // Funktion erhöht den User Score um die übergebene Anzahl
+    // Return: Null
     public void setScore(String user, int score){
         db = getWritableDatabase();
         int scoreFinal = getUserScore(user) + score;
         db.execSQL("UPDATE " + UserTable.TABLE_NAME + " SET " + UserTable.COLUMN_SCORE + " = " + scoreFinal + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
     }
 
+    // Funktion erhöht den TotalScore/Anzahl der beantworteten Fragen
+    // Return: null
     public void setScoreTotal(String user, int totalScore){
         db = getWritableDatabase();
         int scoreTotalFinal = getUserScoreTotal(user) + totalScore;
         db.execSQL("UPDATE " + UserTable.TABLE_NAME + " SET " + UserTable.COLUMN_SCORETOTAL + " = " + scoreTotalFinal + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
     }
 
-
+    // Funktion prüft, ob es schon einen User mit dem Benutzernamen gibt
+    // Return: User vorhanden
     public boolean checkUsername(String user){
         db = getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + UserTable.TABLE_NAME + " WHERE " + UserTable.COLUMN_USER + " = ? ", new String[] {user});
@@ -194,6 +232,8 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
+    // Funktion prüft, ob ein User mit dem Namen und dem Passwort vorhanden ist
+    // Return: User vorhanden
     public boolean validateUser(String user, String passwd){
         db = getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + UserTable.TABLE_NAME + " WHERE " + UserTable.COLUMN_USER + " = ? and " + UserTable.COLUMN_PASSWD + " = ?", new String[] {user, passwd});

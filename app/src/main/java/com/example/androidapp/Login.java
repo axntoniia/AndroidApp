@@ -41,12 +41,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener
         userPrefEdit.commit();
     }
 
+    // Speichert den übergebenen Benutzer in den SharedPreferences
+    // Return: null
     public void safeUser(String user){
         userPrefEdit.putString("currentUser", user);
         userPrefEdit.commit();
     }
 
-
+    // Funktion liest die Felder vom Login aus und loggt bei korrekter eingabe
+    // den User ein
+    // Return: null
     public void login(){
         DbHelper dbHelper = new DbHelper(this);
         String user = et_user.getText().toString();
@@ -64,6 +68,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener
 
     }
 
+    // Funktion ändert die Activity zum Registrieren
+    //Return: null
     public void register(){
         Intent intent = new Intent(this, Registration.class);
         startActivity(intent);
