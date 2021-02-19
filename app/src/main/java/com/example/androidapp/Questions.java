@@ -86,6 +86,10 @@ public class Questions extends Activity implements View.OnClickListener
         if (questionCounter < questionsCounterTotal) {
             currentQuestion = questionList.get(questionCounter);
             tv_question.setText(currentQuestion.getQuestion());
+            btn_a1.setOnClickListener(this);
+            btn_a2.setOnClickListener(this);
+            btn_a3.setOnClickListener(this);
+            btn_a4.setOnClickListener(this);
             double r = Math.random();
             if(r<0.25) {
                 btn_a1.setText(currentQuestion.getOption1());
@@ -141,6 +145,10 @@ public class Questions extends Activity implements View.OnClickListener
     }
 
     private void nextQuestion(){
+        btn_a1.setOnClickListener(null);
+        btn_a2.setOnClickListener(null);
+        btn_a3.setOnClickListener(null);
+        btn_a4.setOnClickListener(null);
         Utils.delay(3, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {

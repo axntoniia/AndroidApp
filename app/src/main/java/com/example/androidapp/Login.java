@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
         String user = et_user.getText().toString();
         String passwd = et_passwd.getText().toString();
         if(dbHelper.validateUser(user, passwd)){
-            Toast.makeText(getApplicationContext(), "Gültig", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Anmeldung erfolgreich", Toast.LENGTH_SHORT).show();
             safeUser(user);
             Intent intent = new Intent(this, Evaluation.class);
             startActivity(intent);

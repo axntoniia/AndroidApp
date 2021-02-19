@@ -195,7 +195,7 @@
                 android:background="@drawable/layout_button"
                 android:text="@string/button_newGame"
                 android:textAlignment="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="40dp"
                 android:textColor="#FFFFFF" />
 
             <Button
@@ -206,7 +206,6 @@
                 android:background="@drawable/layout_button"
                 android:text="@string/button_logout"
                 android:textAlignment="center"
-                android:layout_marginRight="10dp"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 
