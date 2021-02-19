@@ -5,20 +5,70 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class Evaluation extends Activity implements View.OnClickListener
 {
     private Button btnNewGame;
+    private Button btnLogout;
+
+    private TextView tv_headerUser;
+    private TextView tv_headerScore;
+    private TextView tv_headerScoreTotal;
+    private TextView tv_headerScorePercent;
+
+    private TextView tv_user1;
+    private TextView tv_score1;
+    private TextView tv_scoreTotal1;
+    private TextView tv_scorePercent1;
+
+    private TextView tv_user2;
+    private TextView tv_score2;
+    private TextView tv_scoreTotal2;
+    private TextView tv_scorePercent2;
+
+    private TextView tv_user3;
+    private TextView tv_score3;
+    private TextView tv_scoreTotal3;
+    private TextView tv_scorePercent3;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.evaluation);
+        DbHelper dbHelper = new DbHelper(this);
+        dbHelper.getWritableDatabase();
 
-        btnNewGame = (Button) findViewById(R.id.btnNewGame);
+        btnNewGame = findViewById(R.id.btnNewGame);
+        btnLogout = findViewById(R.id.btnLogout);
         btnNewGame.setOnClickListener(this);
+        btnLogout.setOnClickListener(this);
+
+        tv_headerUser = findViewById(R.id.tv_headlineUser);
+        tv_headerScore = findViewById(R.id.tv_headlineScore);
+        tv_headerScoreTotal = findViewById(R.id.tv_headlineScoreTotal);
+        tv_headerScorePercent = findViewById(R.id.tv_headlineScorePercent);
+
+        tv_user1 = findViewById(R.id.tv_user1);
+        tv_score1 = findViewById(R.id.tv_score1);
+        tv_scoreTotal1 = findViewById(R.id.tv_scoreTotal1);
+        tv_scorePercent1 = findViewById(R.id.tv_scorePercent1);
+
+        tv_user1 = findViewById(R.id.tv_user2);
+        tv_score2 = findViewById(R.id.tv_score2);
+        tv_scoreTotal2 = findViewById(R.id.tv_scoreTotal2);
+        tv_scorePercent2 = findViewById(R.id.tv_scorePercent2);
+
+        tv_user3 = findViewById(R.id.tv_user3);
+        tv_score3 = findViewById(R.id.tv_score3);
+        tv_scoreTotal3 = findViewById(R.id.tv_scoreTotal3);
+        tv_scorePercent3 = findViewById(R.id.tv_scorePercent3);
     }
 
     @Override

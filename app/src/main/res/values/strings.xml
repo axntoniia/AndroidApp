@@ -24,4 +24,5 @@
 
     //Strings for Evaluation
     <string name="button_newGame">Neues Spiel</string>
+    <string name="button_logout">Abmelden</string>
 </resources>

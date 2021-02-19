@@ -100,7 +100,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public void insertUser(String user, String passwd, String email){
-        User u = new User(user, passwd, email, 0, 0);
+        User u = new User(user, passwd, email, 3, 10);
         addUser(u);
     }
 
@@ -173,13 +173,13 @@ public class DbHelper extends SQLiteOpenHelper {
     public void setScore(String user, int score){
         db = getWritableDatabase();
         int scoreFinal = getUserScore(user) + score;
-        db.rawQuery("UPDATE " + UserTable.TABLE_NAME + " SET " + UserTable.COLUMN_SCORE + " = " + scoreFinal + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
+        db.execSQL("UPDATE " + UserTable.TABLE_NAME + " SET " + UserTable.COLUMN_SCORE + " = " + scoreFinal + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
     }
 
     public void setScoreTotal(String user, int totalScore){
         db = getWritableDatabase();
-        int scoreTotalFinal = getUserScore(user) + totalScore;
-        db.rawQuery("UPDATE " + UserTable.TABLE_NAME + " SET " + UserTable.COLUMN_SCORETOTAL + " = " + scoreTotalFinal + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
+        int scoreTotalFinal = getUserScoreTotal(user) + totalScore;
+        db.execSQL("UPDATE " + UserTable.TABLE_NAME + " SET " + UserTable.COLUMN_SCORETOTAL + " = " + scoreTotalFinal + " WHERE " + UserTable.COLUMN_USER + " = ?", new String[] {user});
     }
 
 

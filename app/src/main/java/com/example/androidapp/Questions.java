@@ -1,5 +1,6 @@
 package com.example.androidapp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -70,6 +71,7 @@ public class Questions extends Activity implements View.OnClickListener
         questionList = dbHelper.getAllQuestions();
         questionsCounterTotal = 5;
         questionCounter = 0;
+        score = 0;
         Collections.shuffle(questionList);
         userPref = getSharedPreferences("currentUser", MODE_PRIVATE);
         user = userPref.getString("currentUser", "");
@@ -79,6 +81,7 @@ public class Questions extends Activity implements View.OnClickListener
         showNextQuestion();
     }
 
+    @SuppressLint("SetTextI18n")
     private void showNextQuestion(){
         if (questionCounter < questionsCounterTotal) {
             currentQuestion = questionList.get(questionCounter);
@@ -121,7 +124,7 @@ public class Questions extends Activity implements View.OnClickListener
             DbHelper dbHelper = new DbHelper(this);
             try {
                 dbHelper.setScore(user, score);
-                dbHelper.setScoreTotal(user, totalscore);
+                dbHelper.setScoreTotal(user, 5);
                 finishQuiz();
             }
             catch(Exception e){
@@ -138,12 +141,10 @@ public class Questions extends Activity implements View.OnClickListener
 
     private void answerR(){
         score++;
-        totalscore++;
         showNextQuestion();
     }
 
     private void answerW(){
-        totalscore++;
         showNextQuestion();
     }
 

@@ -44,7 +44,13 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         String passwd = et_password.getText().toString();
         String passwd_conf = et_confirmpassword.getText().toString();
         String email = et_email.getText().toString();
-        if(passwd.equals(passwd_conf)){
+        if(user.isEmpty()){
+            Toast.makeText(getApplicationContext(), "Benutzername darf nicht leer sein.", Toast.LENGTH_SHORT).show();
+        }
+        else if(passwd.isEmpty()){
+            Toast.makeText(getApplicationContext(), "Passwort darf nicht leer sein.", Toast.LENGTH_SHORT).show();
+        }
+        else if(passwd.equals(passwd_conf)){
             DbHelper dbHelper = new DbHelper(this);
             if(!dbHelper.checkUsername(user)) {
                 dbHelper.insertUser(user, passwd, email);
